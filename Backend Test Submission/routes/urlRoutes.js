@@ -6,17 +6,7 @@ const {
   saveShortUrl,
   getShortUrl,
   isShortCodeExists,
-} = require("../utils/db"); // <--- Import db layer
-
-function loginMiddleware(req, res, next) {
-  const token = req.headers.authorization;
-  if (!token || token !== "Bearer test-token") {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-  req.user = { id: "user-123" }; // Dummy user for test
-  next();
-}
-module.exports = { loginMiddleware };
+} = require("../utils/db");  
 
 router.post("/shorten", (req, res) => {
   const { originalUrl, customCode, validity } = req.body;
